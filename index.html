@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Matriz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input {
+            width: 50px;
+            margin: 5px;
+        }
+        .matriz {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Criar Matriz</h1>
+    <div class="matriz">
+        <h3>Matriz A</h3>
+        <input id="a00" type="number"> <input id="a01" type="number"><br>
+        <input id="a10" type="number"> <input id="a11" type="number">
+    </div>
+    <div class="matriz">
+        <h3>Matriz B</h3>
+        <input id="b00" type="number"> <input id="b01" type="number"><br>
+        <input id="b10" type="number"> <input id="b11" type="number">
+    </div>
+    <button onclick="calcular()">Calcular</button>
+    <h3>Matriz C</h3>
+    <div id="matrizC"></div>
+    <h3>Resultado</h3>
+    <div id="resultado"></div>
+
+    <script>
+        function calcular() {
+            // Captura os valores das matrizes A e B
+            const matrizA = [
+                [parseFloat(document.getElementById("a00").value), parseFloat(document.getElementById("a01").value)],
+                [parseFloat(document.getElementById("a10").value), parseFloat(document.getElementById("a11").value)]
+            ];
+            const matrizB = [
+                [parseFloat(document.getElementById("b00").value), parseFloat(document.getElementById("b01").value)],
+                [parseFloat(document.getElementById("b10").value), parseFloat(document.getElementById("b11").value)]
+            ];
+
+            // Calcula a matriz C
+            const matrizC = [
+                [
+                    matrizA[0][0] * matrizB[0][0] + matrizA[0][1] * matrizB[1][0],
+                    matrizA[0][0] * matrizB[0][1] + matrizA[0][1] * matrizB[1][1]
+                ],
+                [
+                    matrizA[1][0] * matrizB[0][0] + matrizA[1][1] * matrizB[1][0],
+                    matrizA[1][0] * matrizB[0][1] + matrizA[1][1] * matrizB[1][1]
+                ]
+            ];
+
+            // Calcula o determinante da matriz C
+            const resultado = (matrizC[0][0] * matrizC[1][1]) - (matrizC[0][1] * matrizC[1][0]);
+
+            // Exibe a matriz C e o resultado
+            document.getElementById("matrizC").innerText = `[[${matrizC[0][0]}, ${matrizC[0][1]}], [${matrizC[1][0]}, ${matrizC[1][1]}]]`;
+            document.getElementById("resultado").innerText = resultado;
+        }
+    </script>
+</body>
+</html>
